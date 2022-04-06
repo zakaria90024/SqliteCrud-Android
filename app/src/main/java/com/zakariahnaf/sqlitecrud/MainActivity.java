@@ -102,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
             } while (cursor.moveToNext());
 
         }
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ItemDetailsAdapter adapter = new ItemDetailsAdapter(this, employeesList);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        ItemDetailsAdapter adapter = new ItemDetailsAdapter(this, employeesList);
+//        recyclerView.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
     }
 
 

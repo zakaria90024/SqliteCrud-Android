@@ -59,6 +59,8 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void cancelButtonONclick() {
+        Intent intent = new Intent(this, VoucherActivity.class);
+        startActivity(intent);
     }
 
     private void saveBtnOnclick() {

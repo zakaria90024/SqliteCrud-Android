@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="13">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/back_btn_id"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#FFFF"
+                        android:padding="9sp"
+                        android:src="@drawable/ic_arrow_back" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="3"
+                        android:background="#FFFF"
+                        android:fontFamily="@font/josefinsans_regular"
+                        android:gravity="center"
+                        android:text="Account Reports"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btnQR"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="10sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_weight="12"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#FFFF">
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLAdmission"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#FFFF"
+                            android:gravity="center"
+                            app:tabGravity="fill"
+                            app:tabIndicatorHeight="7dp"
+                            app:tabMode="fixed"
+                            app:tabPadding="5dp"
+                            app:tabSelectedTextColor="@color/white"
+                            app:tabTextColor="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/id_call_logo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="Total Amount: "
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/tv_totalStudents"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_totalSumPaid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="left"
+                                android:paddingStart="4dp"
+                                android:text="0"
+                                android:textColor="#FFFFFF"
+                                android:textSize="2dp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/textView13"
+                                app:layout_constraintVertical_bias="0.0" />
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10"
+                        android:background="#CFFFFFFF"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutID1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbarID"
+                            android:clipToPadding="false"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/totalDueCardViewID"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                app:cardElevation="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="74dp"
+                                        android:layout_height="74dp"
+                                        android:src="@drawable/daily_collection"
+                                        tools:ignore="ContentDescription" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="2dp"
+                                        android:layout_margin="3dp"
+                                        android:background="#4a148c" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Stock"
+                                        android:textColor="#1f18fd"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/sectionDueCardViewID"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                app:cardElevation="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="74dp"
+                                        android:layout_height="74dp"
+                                        android:src="@drawable/due_report"
+                                        tools:ignore="ContentDescription" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="2dp"
+                                        android:layout_margin="3dp"
+                                        android:background="#4a148c" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Stock Item"
+                                        android:textColor="#1f18fd"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutID2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/toolbarID"
+                            android:clipToPadding="false"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/totalDueCardViewDailyConnection"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                app:cardElevation="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:onClick="WhenClickAddCategory"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="74dp"
+                                        android:layout_height="74dp"
+                                        android:src="@drawable/ic_baseline_payments_24"
+                                        tools:ignore="ContentDescription" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="2dp"
+                                        android:layout_margin="3dp"
+                                        android:background="#4a148c" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Sales Order"
+                                        android:textColor="#1f18fd"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/sectionDueCardViewLedger"
+                                android:layout_width="0dp"
+                                android:layout_height="200dp"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                app:cardElevation="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:onClick="WhenClickAddProduct"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="74dp"
+                                        android:layout_height="74dp"
+                                        android:src="@drawable/ic_baseline_document_scanner_24"
+                                        tools:ignore="ContentDescription" />
+
+                                    <View
+                                        android:layout_width="match_parent"
+                                        android:layout_height="2dp"
+                                        android:layout_margin="3dp"
+                                        android:background="#4a148c" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:text="Approval"
+                                        android:textColor="#1f18fd"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFF" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:background="#FFFF" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="2dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
