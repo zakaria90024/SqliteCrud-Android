@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SqliteCrud">
         <activity
-            android:name=".LoginActivity"
-            android:exported="true" >
+            android:name=".activitys.ApprovalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,19 +22,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VoucherActivity"
+            android:name=".activitys.VoucherActivity"
             android:exported="false" />
         <activity
-            android:name=".AddProductActivity"
+            android:name=".activitys.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".AddCategoryActivity"
+            android:name=".activitys.AddCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="true">
-
-        </activity>
+            android:name=".activitys.HomeActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

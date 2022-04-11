@@ -22,11 +22,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zakariahnaf.sqlitecrud.R;
 import com.zakariahnaf.sqlitecrud.database.DatabaseHelper;
 import com.zakariahnaf.sqlitecrud.entities.SalesOrder;
-import com.zakariahnaf.sqlitecrud.model.Employees;
 
 import java.util.List;
 
-public class ItemDetailsAdapter extends RecyclerView.Adapter<ItemDetailsAdapter.BarCodeViewHolder> {
+public class ApproveAdapter extends RecyclerView.Adapter<ApproveAdapter.BarCodeViewHolder> {
 
     private final List<SalesOrder> BarCodeDetailsList;
     private boolean isSelectedAll = false;
@@ -35,7 +34,7 @@ public class ItemDetailsAdapter extends RecyclerView.Adapter<ItemDetailsAdapter.
     EditText editTextQty;
     Button btnUpdata;
 
-    public ItemDetailsAdapter(Context mContext, List<SalesOrder> BarCodeDetailsList) {
+    public ApproveAdapter(Context mContext, List<SalesOrder> BarCodeDetailsList) {
         this.BarCodeDetailsList = BarCodeDetailsList;
         this.mContext = mContext;
 
@@ -44,7 +43,7 @@ public class ItemDetailsAdapter extends RecyclerView.Adapter<ItemDetailsAdapter.
     @NonNull
     @Override
     public BarCodeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_details_simple, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_details_simple_approve, parent, false);
 
         BarCodeViewHolder barCodeViewHolder = new BarCodeViewHolder(view);
         barCodeViewHolder.setOnClickListener(new BarCodeViewHolder.ClickListener() {

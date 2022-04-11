@@ -46,6 +46,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String net_amntColumnSalesOrder = "NET_AMNT";
     private static String app_statusColumnSalesOrder = "APP_STATUS";
 
+    //COLUMN NAME FOR INV_SALES_ORDER_TRN - 4
+    private static String idColumnSalesOrderTRN = "ID";//PK
+    private static String voucher_noColumnSalesOrderTRN = "VOUCHER_NO";//FK
+    private static String group_codeColumnSalesOrderTRN = "GROUP_CODE";//FK
+    private static String item_codeColumnSalesOrderTRN = "ITEM_CODE";//FK
+    private static String item_qntyColumnSalesOrderTRN = "ITEM_QNTY";
+    private static String item_amntColumnSalesOrderTRN = "ITEM_AMNT";
+    private static String commissionColumnSalesOrderTRN = "COMMISSION";
+    private static String net_ammountColumnSalesOrder = "NET_AMMOUNT";
+
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, dbName, null, dbVersion);
@@ -56,27 +66,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         sqLiteDatabase.execSQL("create table " + categoryTable + "(" +
-                idColumnGROUP + " integer primary key autoincrement," +
+                idColumnGROUP + " integer primary key autoincrement," +//PK
                 nameColumnGROUP + " text" +
                 ")");
 
 
         sqLiteDatabase.execSQL("create table " + productTable + "(" +
-                idColumn + " integer primary key autoincrement," +
+                idColumn + " integer primary key autoincrement," +//PK
                 nameColumn + " text, " +
                 priceColumn + " real, " +
                 descriptionColumn + " text, " +
-                categoryIdColumn + " integer references " + categoryTable + "(" + idColumnGROUP + ")" +
+                categoryIdColumn + " integer references " + categoryTable + "(" + idColumnGROUP + ")" +//FK
                 ")");
 
 
         sqLiteDatabase.execSQL("create table " + salesOrderTable + "(" +
-                voucher_noColumnSalesOrder + " integer primary key autoincrement," +
+                voucher_noColumnSalesOrder + " integer primary key autoincrement," +//PK
                 voucher_dateColumnSalesOrder + " text," +
                 net_qntyColumnSalesOrder + " integer, " +
                 net_amntColumnSalesOrder + " double, " +
                 app_statusColumnSalesOrder + " text " +
                 ")");
+
+
+
+        //For table 4 data
+        sqLiteDatabase.execSQL("create table " + salesOrderTrnTable + "(" +
+                idColumnSalesOrderTRN + " integer primary key autoincrement," +//PK
+                voucher_noColumnSalesOrderTRN + " integer references " + salesOrderTable + "(" + voucher_noColumnSalesOrder + ")," +//FK
+                group_codeColumnSalesOrderTRN + " integer references " + productTable + "(" + categoryIdColumn + ")," +//FK
+                item_codeColumnSalesOrderTRN + " integer references " + productTable + "(" + idColumn + ")," +//FK
+                item_qntyColumnSalesOrderTRN + " real, " +
+                item_amntColumnSalesOrderTRN + " real, " +
+                commissionColumnSalesOrderTRN + " text, " +
+                net_ammountColumnSalesOrder + " real " +
+
+                ")");
+
     }
 
     @Override
@@ -227,7 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.delete(salesOrderTable, voucher_noColumnSalesOrder + "=" + id, null) ;
     }
 
-    //FOR DELETE
+    //FOR UPDATE
     public void update(int id, ContentValues data) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         sqLiteDatabase.update(salesOrderTable, data, voucher_noColumnSalesOrder + "=" + id, null) ;

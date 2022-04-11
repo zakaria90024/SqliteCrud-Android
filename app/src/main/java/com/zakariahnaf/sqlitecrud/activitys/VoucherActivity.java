@@ -1,4 +1,4 @@
-package com.zakariahnaf.sqlitecrud;
+package com.zakariahnaf.sqlitecrud.activitys;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,16 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zakariahnaf.sqlitecrud.R;
+import com.zakariahnaf.sqlitecrud.adapters.CategoryAdapter;
 import com.zakariahnaf.sqlitecrud.adapters.ItemDetailsAdapter;
+import com.zakariahnaf.sqlitecrud.adapters.ProductAdapter;
 import com.zakariahnaf.sqlitecrud.database.DatabaseHelper;
 import com.zakariahnaf.sqlitecrud.entities.Category;
 import com.zakariahnaf.sqlitecrud.entities.Product;
 import com.zakariahnaf.sqlitecrud.entities.SalesOrder;
-import com.zakariahnaf.sqlitecrud.model.Employees;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ public class VoucherActivity extends AppCompatActivity {
     Spinner spinnerDept;
 
 
-
     //auto compleate
     //for autoCompleate TextView
     List<String> groupNameList = new ArrayList<String>();
@@ -53,6 +53,9 @@ public class VoucherActivity extends AppCompatActivity {
     public static String pName = null;
     public static int pCode;
     AutoCompleteTextView txt_autogroup, txt_autoitem;
+
+
+    Spinner txt_spinner;
 
 
     //TextView
@@ -70,12 +73,16 @@ public class VoucherActivity extends AppCompatActivity {
         salesOrders = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         txt_autogroup = (AutoCompleteTextView) findViewById(R.id.txt_autogroup);
-        txt_autoitem = (AutoCompleteTextView) findViewById(R.id.txt_autoitem);
+
+
+        txt_spinner = (Spinner) findViewById(R.id.txt_autoitem);
+
+
         txt_VNand_Date = (TextView) findViewById(R.id.txt_VNand_Date);
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
         String date = simpleDateFormat.format(calendar.getTime());
-        txt_VNand_Date.setText("TC:14, "+date);
+        txt_VNand_Date.setText("TC:14, " + date);
         ammount = (TextView) findViewById(R.id.ammount);
         qty = (EditText) findViewById(R.id.qty);
         addtoList = (Button) findViewById(R.id.buttonAddEmployee);
@@ -87,6 +94,7 @@ public class VoucherActivity extends AppCompatActivity {
         });
 
         loadData();
+        loadDataSaleorder();
 
     }
 
@@ -94,19 +102,23 @@ public class VoucherActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
         String date = simpleDateFormat.format(calendar.getTime());
-
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         SalesOrder salesOrder = new SalesOrder();
         salesOrder.setId(1);
         salesOrder.setDate(date);
-        salesOrder.setQty(Integer.parseInt(qty.getText().toString()));
-        salesOrder.setAmnt(24434);
-        salesOrder.setStatus(1);
+        try {
+            salesOrder.setQty(Integer.parseInt(qty.getText().toString()));
+            salesOrder.setAmnt(24434);
+            salesOrder.setStatus(1);
+
+        }catch (Exception e){
+            Toast.makeText(this, "Qry fineld empty", Toast.LENGTH_SHORT).show();
+        }
+
 
         if (databaseHelper.createSalesOrder(salesOrder)) {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             loadDataSaleorder();
-
 
         } else {
             Toast.makeText(this, "Fail", Toast.LENGTH_SHORT).show();
@@ -119,11 +131,16 @@ public class VoucherActivity extends AppCompatActivity {
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         List<SalesOrder> salesOrders = databaseHelper.findAllSalesOrder();
 
-        if(!salesOrders.isEmpty()){
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            ItemDetailsAdapter adapter = new ItemDetailsAdapter(this, salesOrders);
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+        try {
+            if (!salesOrders.isEmpty()) {
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                ItemDetailsAdapter adapter = new ItemDetailsAdapter(this, salesOrders);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Empty Sale order", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -132,37 +149,42 @@ public class VoucherActivity extends AppCompatActivity {
         List<Category> categories = databaseHelper.findAllCategory();
 
 
-        if (!categories.isEmpty()) {
+        try {
+            if (!categories.isEmpty()) {
 
-            for (int i = 0; i < categories.size(); i++) {
-                groupName = categories.get(i).getName().trim();
-                groupCode = categories.get(i).getId();
-                groupNameList.add(groupName);
-                groupCodeList.add(groupCode);
-            }
-            //CategorySpinner.setAdapter(new CategoryAdapter(getApplicationContext(), R.layout.item_category, categories));
+                for (int i = 0; i < categories.size(); i++) {
+                    groupName = categories.get(i).getName().trim();
+                    groupCode = categories.get(i).getId();
+                    groupNameList.add(groupName);
+                    groupCodeList.add(groupCode);
+                }
+                //CategorySpinner.setAdapter(new CategoryAdapter(getApplicationContext(), R.layout.item_category, categories));
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_dropdown_item_1line, groupNameList);
-            txt_autogroup.setAdapter(adapter);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_dropdown_item_1line, groupNameList);
+                txt_autogroup.setAdapter(adapter);
 
-            //adapter.getPosition()
+                //adapter.getPosition()
 
 
-            txt_autogroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i1, long l) {
-                    for (int i = 0; i < categories.size(); i++) {
-                        if (txt_autogroup.getText().toString().trim().equals(groupNameList.get(i))) {
-                            //String ledgerId = categories.get(i);
-                            //txt_selected_ledger.setText(txt_autocompleate.getText().toString());
-                            Toast.makeText(VoucherActivity.this, "id-" + groupCodeList.get(i), Toast.LENGTH_SHORT).show();
+                txt_autogroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i1, long l) {
+                        for (int i = 0; i < categories.size(); i++) {
+                            if (txt_autogroup.getText().toString().trim().equals(groupNameList.get(i))) {
+                                //String ledgerId = categories.get(i);
+                                //txt_selected_ledger.setText(txt_autocompleate.getText().toString());
+                                Toast.makeText(VoucherActivity.this, "id-" + groupCodeList.get(i), Toast.LENGTH_SHORT).show();
 
-                            callWithId(groupCodeList.get(i));
+                                callWithId(groupCodeList.get(i));
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Empty Sale Order", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -174,6 +196,8 @@ public class VoucherActivity extends AppCompatActivity {
         List<Product> products = databaseHelper.findAllProducts();
         Toast.makeText(this, "size" + products.size(), Toast.LENGTH_SHORT).show();
 
+
+
         if (!products.isEmpty()) {
 
             for (int i = 0; i < products.size(); i++) {
@@ -182,32 +206,34 @@ public class VoucherActivity extends AppCompatActivity {
                 pNameList.add(pName);
                 pCodeList.add(pCode);
             }
+
+            txt_spinner.setAdapter(new ProductAdapter(getApplicationContext(), R.layout.item_category, products));
+
             //CategorySpinner.setAdapter(new CategoryAdapter(getApplicationContext(), R.layout.item_category, categories));
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_dropdown_item_1line, pNameList);
-            txt_autoitem.setAdapter(adapter);
-
-            //adapter.getPosition()
-
-
-            txt_autoitem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i1, long l) {
-                    for (int i = 0; i < products.size(); i++) {
-                        if (txt_autoitem.getText().toString().trim().equals(pNameList.get(i))) {
-                            //String ledgerId = categories.get(i);
-                            //txt_selected_ledger.setText(txt_autocompleate.getText().toString());
-                            Toast.makeText(VoucherActivity.this, "id-" + pCodeList.get(i), Toast.LENGTH_SHORT).show();
-
-                            callWithId(pCodeList.get(i));
-                        }
-                    }
-                }
-            });
-        }
+//            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                    android.R.layout.simple_dropdown_item_1line, pNameList);
+//            txt_autoitem.setAdapter(adapter);
+//
+//            //adapter.getPosition()
+//
+//
+//            txt_autoitem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i1, long l) {
+//                    for (int i = 0; i < products.size(); i++) {
+//                        if (txt_autoitem.getText().toString().trim().equals(pNameList.get(i))) {
+//                            //String ledgerId = categories.get(i);
+//                            //txt_selected_ledger.setText(txt_autocompleate.getText().toString());
+//                            Toast.makeText(VoucherActivity.this, "id-" + pCodeList.get(i), Toast.LENGTH_SHORT).show();
+//
+//                            callWithId(pCodeList.get(i));
+//                        }
+//                    }
+//                }
+//            });
+       }
 
     }
-
 
 }

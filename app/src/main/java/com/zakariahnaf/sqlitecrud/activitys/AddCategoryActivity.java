@@ -1,4 +1,4 @@
-package com.zakariahnaf.sqlitecrud;
+package com.zakariahnaf.sqlitecrud.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zakariahnaf.sqlitecrud.R;
 import com.zakariahnaf.sqlitecrud.database.DatabaseHelper;
 import com.zakariahnaf.sqlitecrud.entities.Category;
 

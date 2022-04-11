@@ -28,6 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -182,7 +183,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
-                                        android:text="Stock"
+                                        android:text="Add Group"
                                         android:textColor="#1f18fd"
                                         android:textStyle="bold" />
 
@@ -222,7 +223,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
-                                        android:text="Stock Item"
+                                        android:text="Add Product"
                                         android:textColor="#1f18fd"
                                         android:textStyle="bold" />
 
@@ -274,7 +275,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
-                                        android:text="Sales Order"
+                                        android:text="Voucher"
                                         android:textColor="#1f18fd"
                                         android:textStyle="bold" />
 

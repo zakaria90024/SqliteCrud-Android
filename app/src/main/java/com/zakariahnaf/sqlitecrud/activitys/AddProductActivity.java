@@ -1,4 +1,4 @@
-package com.zakariahnaf.sqlitecrud;
+package com.zakariahnaf.sqlitecrud.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.zakariahnaf.sqlitecrud.R;
 import com.zakariahnaf.sqlitecrud.adapters.CategoryAdapter;
-import com.zakariahnaf.sqlitecrud.adapters.ProductAdapter;
 import com.zakariahnaf.sqlitecrud.database.DatabaseHelper;
 import com.zakariahnaf.sqlitecrud.entities.Category;
 import com.zakariahnaf.sqlitecrud.entities.Product;
@@ -92,8 +91,12 @@ public class AddProductActivity extends AppCompatActivity {
     public void loadData(){
         DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         List<Category> categories = databaseHelper.findAllCategory();
-        if(!categories.isEmpty()){
-            CategorySpinner.setAdapter(new CategoryAdapter(getApplicationContext(), R.layout.item_category, categories));
+        try {
+            if (!categories.isEmpty()) {
+                CategorySpinner.setAdapter(new CategoryAdapter(getApplicationContext(), R.layout.item_category, categories));
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "Group Empty", Toast.LENGTH_SHORT).show();
         }
     }
 

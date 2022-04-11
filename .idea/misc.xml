@@ -4,22 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/arrow_down_24.xml" value="0.1585" />
-        <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/bg_red_rectangle.xml" value="0.1875" />
+        <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/bg_red_rectangle.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/selector_dropdown.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/drawable/text_field_bg.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_add_category.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_add_product.xml" value="0.19746376811594202" />
+        <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_approval.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_home.xml" value="0.17074275362318841" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/deshboard.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/deshboard.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/dialog_custom.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/dialogue_box_update.xml" value="0.11854103343465046" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/item_category.xml" value="0.19519927536231885" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/item_details.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/item_details_simple.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/item_details_simple_approve.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProject/app/src/main/res/layout/voucher_activity.xml" value="0.2" />
       </map>
     </option>
